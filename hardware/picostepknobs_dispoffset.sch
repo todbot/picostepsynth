@@ -22665,6 +22665,9 @@ by exp-project-lbr.ulp</description>
 <part name="+3V37" library="supply1" library_urn="urn:adsk.eagle:library:371" deviceset="+3V3" device=""/>
 <part name="U1" library="RpiPico" deviceset="RASPBERRY_PICO" device="SMD-TH"/>
 <part name="MODULE_DISP1" library="todstuff2023" deviceset="DISPLAY-OLED-128X64" device="-1.3IN"/>
+<part name="C14" library="rcl" library_urn="urn:adsk.eagle:library:334" deviceset="C-EU" device="C0805" package3d_urn="urn:adsk.eagle:package:23617/2" value="100n"/>
+<part name="GND49" library="supply1" library_urn="urn:adsk.eagle:library:371" deviceset="GND" device=""/>
+<part name="+3V38" library="supply1" library_urn="urn:adsk.eagle:library:371" deviceset="+3V3" device=""/>
 </parts>
 <sheets>
 <sheet>
@@ -23139,6 +23142,16 @@ by exp-project-lbr.ulp</description>
 <attribute name="NAME" x="48.26" y="109.22" size="1.778" layer="95"/>
 <attribute name="VALUE" x="48.26" y="106.68" size="1.778" layer="96"/>
 </instance>
+<instance part="C14" gate="G$1" x="127" y="187.96" smashed="yes" rot="MR0">
+<attribute name="NAME" x="126.492" y="188.341" size="1.778" layer="95" rot="MR0"/>
+<attribute name="VALUE" x="126.492" y="183.261" size="1.778" layer="96" rot="MR0"/>
+</instance>
+<instance part="GND49" gate="1" x="127" y="180.34" smashed="yes">
+<attribute name="VALUE" x="124.46" y="177.8" size="1.778" layer="96"/>
+</instance>
+<instance part="+3V38" gate="G$1" x="127" y="193.04" smashed="yes">
+<attribute name="VALUE" x="131.064" y="187.96" size="1.778" layer="96" rot="R90"/>
+</instance>
 </instances>
 <busses>
 </busses>
@@ -23368,6 +23381,10 @@ by exp-project-lbr.ulp</description>
 <pinref part="C12" gate="G$1" pin="2"/>
 <pinref part="GND48" gate="1" pin="GND"/>
 </segment>
+<segment>
+<pinref part="C14" gate="G$1" pin="2"/>
+<pinref part="GND49" gate="1" pin="GND"/>
+</segment>
 </net>
 <net name="+3V3" class="0">
 <segment>
@@ -23535,6 +23552,10 @@ by exp-project-lbr.ulp</description>
 <segment>
 <pinref part="C12" gate="G$1" pin="1"/>
 <pinref part="+3V37" gate="G$1" pin="+3V3"/>
+</segment>
+<segment>
+<pinref part="C14" gate="G$1" pin="1"/>
+<pinref part="+3V38" gate="G$1" pin="+3V3"/>
 </segment>
 </net>
 <net name="MIDI_OUT" class="0">
