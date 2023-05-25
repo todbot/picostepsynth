@@ -1,4 +1,4 @@
-# picostepknobs
+# picostepsynth
 
 
 [more to come]
