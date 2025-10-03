@@ -12,8 +12,6 @@ import synthio
 import ulab.numpy as np
 import random
 
-import time # for debugging
-
 #MIXER_BUFFER_SIZE = 4096
 MIXER_BUFFER_SIZE = 8192
 SAMPLE_RATE = 28000  # clicks @ 36kHz & 48kHz on rp2040
@@ -76,6 +74,8 @@ class PicoStepKnobs():
                                               chip_select = disp_cs, reset=disp_res)
         self.display = adafruit_displayio_sh1106.SH1106(self.display_bus,
                                                         width=dw, height=dh, colstart=3)
+        self.disp_group = displayio.Group()
+        self.display.root_group = self.disp_group
 
         # MIDI setup
         self.midi_uart = busio.UART(tx=midi_tx_pin, rx=midi_rx_pin, baudrate=31250,
@@ -138,7 +138,8 @@ class PicoStepKnobs():
         return self.pot.value
 
     def read_all_pots(self):
+        """ returns array of pot values, 0-255 """
         filt = 0.75
         for i in range(8):
-            self.pot_vals[i] = filt*self.pot_vals[i] + (1-filt)*self.read_pot(i) #filter
-        return self.pot_vals
+            self.pot_vals[i] = filt*self.pot_vals[i] + (1-filt)*self.read_pot(i) # filter
+        return [int(v//256) for v in self.pot_vals]
